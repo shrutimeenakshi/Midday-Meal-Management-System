@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kitchen Operations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-primary">🧑‍🍳 Kitchen Operations & Menu</h2>
+            <a href="/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+        </div>
+
+        <div class="card shadow mb-5 border-0">
+            <div class="card-header bg-{{ focus_color }} text-white fw-bold d-flex justify-content-between align-items-center">
+                <span class="fs-5">Suggested Menu for Next Week</span>
+                <span class="badge bg-light text-dark fs-6">Focus: {{ menu_focus }}</span>
+            </div>
+            <div class="card-body">
+                <p class="text-muted text-center mb-4">
+                    <em>This menu is automatically generated based on the current health deficiencies of your active students to ensure maximum nutritional impact.</em>
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center align-middle fs-5">
+                        <thead class="table-light">
+                            <tr><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-primary fw-bold p-4">{{ smart_menu['Monday'] }}</td>
+                                <td class="text-primary fw-bold p-4">{{ smart_menu['Tuesday'] }}</td>
+                                <td class="text-primary fw-bold p-4">{{ smart_menu['Wednesday'] }}</td>
+                                <td class="text-primary fw-bold p-4">{{ smart_menu['Thursday'] }}</td>
+                                <td class="text-primary fw-bold p-4">{{ smart_menu['Friday'] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mb-5 border-0">
+            <div class="card-header bg-primary text-white fw-bold fs-5">
+                📦 Live Kitchen Inventory Status
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover text-center align-middle mb-0 fs-5">
+                        <thead class="table-light">
+                            <tr><th>Ingredient</th><th>Current Stock</th><th>Minimum Threshold</th><th>System Status</th></tr>
+                        </thead>
+                        <tbody>
+                            {% for item in inventory %}
+                            <tr class="{% if item[1] <= item[2] %}table-danger fw-bold{% endif %}">
+                                <td class="p-3">{{ item[0] }}</td>
+                                <td class="p-3">{{ item[1] | round(2) }} {% if 'Count' not in item[0] %}kg{% else %}units{% endif %}</td>
+                                <td class="p-3">{{ item[2] }} {% if 'Count' not in item[0] %}kg{% else %}units{% endif %}</td>
+                                <td class="p-3">
+                                    {% if item[1] <= item[2] %} 
+                                        🚨 <span class="text-danger">Reorder Immediately</span> 
+                                    {% else %} 
+                                        ✅ <span class="text-success">Sufficient Stock</span> 
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr><td colspan="4" class="text-muted p-4">No inventory data found.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
