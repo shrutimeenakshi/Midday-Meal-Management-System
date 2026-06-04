@@ -126,12 +126,3 @@ http://127.0.0.1:5000/
 
 ---
 
-👩‍💻 Author
-
-Shruti Meenakshi NS
-
-Computer Science and Engineering Undergraduate
-Specialization: Big Data Analytics
-
-🔗 GitHub: https://github.com/shrutimeenakshi
-🔗 LinkedIn: https://linkedin.com/in/shruti-meenakshi
