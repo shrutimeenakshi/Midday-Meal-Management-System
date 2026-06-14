@@ -66,7 +66,16 @@ Midday-Meal-Management-System/
 
 ---
 
-📊 System Workflow
+🔄 System Workflow
+
+1. Admin registers students and staff into the system
+2. Unique QR codes are generated for each student
+3. Staff scans student QR codes during meal distribution
+4. Attendance and meal records are updated in real time
+5. Student health details and BMI are analyzed
+6. Nutrition recommendations are generated based on health data
+7. Admin monitors analytics, attendance, and meal reports through the dashboard
+
 
 ---
 
